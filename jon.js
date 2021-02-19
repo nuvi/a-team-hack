@@ -41,13 +41,13 @@ window.planetDistance = {
 
 function backgroundSoundInit() {
   const listener = new THREE.AudioListener();
-  window.GLOBAL_GL.camera.add( listener );
-  window.GLOBAL_GL.jonObjects.sound = new THREE.Audio( listener );
+  window.GLOBAL_GL.camera.add(listener);
+  window.GLOBAL_GL.jonObjects.sound = new THREE.Audio(listener);
   const audioLoader = new THREE.AudioLoader();
-  audioLoader.load( './sounds/ambience.mp3', function( buffer ) {
-    window.GLOBAL_GL.jonObjects.sound.setBuffer( buffer );
-    window.GLOBAL_GL.jonObjects.sound.setLoop( true );
-    window.GLOBAL_GL.jonObjects.sound.setVolume( 0.2 );
+  audioLoader.load('./sounds/ambience.mp3', function (buffer) {
+    window.GLOBAL_GL.jonObjects.sound.setBuffer(buffer);
+    window.GLOBAL_GL.jonObjects.sound.setLoop(true);
+    window.GLOBAL_GL.jonObjects.sound.setVolume(0.2);
   });
 
   const playPauseButton = document.createElement('button');
@@ -176,7 +176,7 @@ function jonInit() {
 
   let neptune = new THREE.Object3D();
   loader = new THREE.TextureLoader();
-  loader.load('https://images.freecreatives.com/wp-content/uploads/2016/02/Blue-Grungy-Texture.jpg', function (texture) {
+  loader.load('https://images.pexels.com/photos/304664/pexels-photo-304664.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500', function (texture) {
     let geometry = new THREE.SphereGeometry(window.planetSizes.neptune, 50, 50);
     let material = new THREE.MeshPhysicalMaterial({ map: texture });
     let mesh = new THREE.Mesh(geometry, material);
