@@ -39,8 +39,6 @@ window.planetDistance = {
 }
 
 function jonInit() {
-  const lightColor = 0xffffff;
-  slightglow = new THREE.PointLight(lightColor, 1);
   const orbitSpeedInput = document.createElement('div')
   const slider = document.createElement('input');
   slider.setAttribute('type', 'range');
@@ -162,6 +160,7 @@ function jonInit() {
     let mesh = new THREE.Mesh(geometry, material);
     pluto.add(mesh);
   });
+
   window.GLOBAL_GL.scene.add(pluto);
 
   window.GLOBAL_GL.scene.add(mercury);
