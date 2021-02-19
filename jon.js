@@ -2,6 +2,7 @@ const earthTilt = 23.4 * Math.PI / 180; // tilt in radians
 const earthAxis = new THREE.Vector3( Math.sin( earthTilt ), Math.cos( earthTilt ), 0 ).normalize();
 
 function jonInit() {
+  window.GLOBAL_GL.jonObjects.ORBIT_SPEED = 0.000001;
   const orbitSpeedInput = document.createElement('div')
   const slider = document.createElement('input');
   slider.setAttribute('type', 'range');
@@ -144,7 +145,6 @@ function jonInit() {
   window.GLOBAL_GL.jonObjects.uranus = uranus;
   window.GLOBAL_GL.jonObjects.neptune = neptune;
   window.GLOBAL_GL.jonObjects.pluto = pluto;
-  window.GLOBAL_GL.jonObjects.ORBIT_SPEED = 0.00001;
 }
 
 function setInOrbit(planetName, earthYears, distance, rotationSpeed, time) {
