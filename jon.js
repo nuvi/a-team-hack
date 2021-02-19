@@ -6,7 +6,7 @@ const sunRadiusKM = 1391400;
 
 function getScaledDistanceFromSun(planetDistanceAU) {
   var realScale = (planetDistanceAU * 10) / sunRadius;
-  return realScale / 100;
+  return (realScale / 100) + 10;
 }
 
 function getScaledSize(planetSizeKM) {
@@ -195,6 +195,7 @@ function jonInit() {
     let mesh = new THREE.Mesh(geometry, material);
     pluto.add(mesh);
   });
+
   window.GLOBAL_GL.scene.add(pluto);
 
   window.GLOBAL_GL.scene.add(mercury);
