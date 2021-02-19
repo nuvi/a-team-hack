@@ -73,13 +73,13 @@ function jonInit() {
   backgroundSoundInit()
   
   // Orbit Speed Adjuster
-  window.GLOBAL_GL.jonObjects.ORBIT_SPEED = 0.000001;
+  window.GLOBAL_GL.jonObjects.ORBIT_SPEED = 0.0000001;
   const orbitSpeedInput = document.createElement('div')
   const slider = document.createElement('input');
   slider.setAttribute('type', 'range');
-  slider.setAttribute('min', 0.000001);
-  slider.setAttribute('max', 0.0001);
-  slider.setAttribute('step', 0.000001);
+  slider.setAttribute('min', 0.0000001);
+  slider.setAttribute('max', 0.00001);
+  slider.setAttribute('step', 0.0000001);
   slider.setAttribute('value', window.GLOBAL_GL.jonObjects.ORBIT_SPEED);
   slider.addEventListener('input', (e) => window.GLOBAL_GL.jonObjects.ORBIT_SPEED = e.target.value);
   orbitSpeedInput.style = 'position: absolute; right: 0; top: 0; color: white';
