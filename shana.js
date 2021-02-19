@@ -1,3 +1,7 @@
+function shanaInit() {
+
+}
+
 function shanaRenderer() {
 
 }

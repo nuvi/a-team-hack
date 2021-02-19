@@ -1,3 +1,7 @@
+function jonInit() {
+
+}
+
 function jonRenderer() {
 
 }

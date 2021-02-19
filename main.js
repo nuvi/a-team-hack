@@ -10,11 +10,29 @@ const renderer = new THREE.WebGLRenderer();
 renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement);
 
-// make a cube and add it to the scene
-const geometry = new THREE.BoxGeometry();
-const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
-const cube = new THREE.Mesh(geometry, material);
-scene.add(cube);
+// create a global reference to all our crap
+window.GLOBAL_GL = {
+    scene,
+    camera,
+    renderer,
+    laneObjects: {
+    },
+    danObjects: {
+    },
+    roosterObjects: {
+    },
+    shanaObjects: {
+    },
+    jonObjects: {
+    }
+}
+
+// run all our inits
+laneInit()
+danInit()
+jonInit()
+shanaInit()
+roosterInit()
 
 // animation loop -  runs once per frame
 const animate = function () {
@@ -26,6 +44,6 @@ const animate = function () {
     roosterRenderer()
 
     // rerender the screen
-    renderer.render(scene, camera);
+    renderer.render(window.GLOBAL_GL.scene, window.GLOBAL_GL.camera);
 };
 animate();

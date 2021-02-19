@@ -1,3 +1,7 @@
+function danInit() {
+
+}
+
 function danRenderer() {
 
 }
