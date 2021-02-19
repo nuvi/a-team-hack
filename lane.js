@@ -1,6 +1,11 @@
 function laneInit() {
+    const texture = new THREE.TextureLoader().load("https://images.unsplash.com/photo-1506318137071-a8e063b4bec0?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2140&q=80");
+    texture.wrapS = THREE.ClampToEdgeWrapping;
+    texture.wrapT = THREE.ClampToEdgeWrapping;
+    window.GLOBAL_GL.scene.background = texture
+
     const lightColor = 0xfff7ba
-    sunLight = new THREE.PointLight(lightColor, 0);
+    sunLight = new THREE.PointLight(lightColor, 1);
 
     let sun = new THREE.Object3D();
     var loader = new THREE.TextureLoader();
@@ -16,26 +21,11 @@ function laneInit() {
     window.GLOBAL_GL.laneObjects.sunLight = sunLight
     window.GLOBAL_GL.laneObjects.sunFading = false
 
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0);
+    const ambientLight = new THREE.AmbientLight(0xffffff, .25);
     scene.add(ambientLight);
     window.GLOBAL_GL.laneObjects.ambientLight = ambientLight
 }
 
 function laneRenderer() {
     window.GLOBAL_GL.laneObjects.sun.rotation.y += .01
-
-    const lightChangeFreq = .01
-    if (window.GLOBAL_GL.laneObjects.sunFading) {
-        window.GLOBAL_GL.laneObjects.sunLight.intensity -= lightChangeFreq
-        window.GLOBAL_GL.laneObjects.ambientLight.intensity -= lightChangeFreq / 5
-    } else {
-        window.GLOBAL_GL.laneObjects.sunLight.intensity += lightChangeFreq
-        window.GLOBAL_GL.laneObjects.ambientLight.intensity += lightChangeFreq / 5
-    }
-    if (window.GLOBAL_GL.laneObjects.sunLight.intensity < 0) {
-        window.GLOBAL_GL.laneObjects.sunFading = false
-    }
-    if (window.GLOBAL_GL.laneObjects.sunLight.intensity > 3) {
-        window.GLOBAL_GL.laneObjects.sunFading = true
-    }
 }
