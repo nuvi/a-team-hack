@@ -16,14 +16,15 @@ function getScaledSize(planetSizeKM) {
 
 window.planetSizes = {
   sun: 10,
-  mercury: getScaledSize(4879),
-  venus: getScaledSize(12104),
-  earth: getScaledSize(12756),
-  mars: getScaledSize(6792),
-  jupiter: getScaledSize(142984),
-  saturn: getScaledSize(120536),
-  uranus: getScaledSize(51118),
-  neptune: getScaledSize(49528)
+  mercury: .2,//getScaledSize(4879),
+  venus: 1,//getScaledSize(12104),
+  earth: 1,//getScaledSize(12756),
+  mars: .5,//getScaledSize(6792),
+  jupiter: 5,//getScaledSize(142984),
+  saturn: 4,//getScaledSize(120536),
+  uranus: 4,//getScaledSize(51118),
+  neptune: 3,//getScaledSize(49528)
+  pluto: .1,//getScaledSize(49528)
 }
 
 window.planetDistance = {
@@ -32,10 +33,10 @@ window.planetDistance = {
   earth: getScaledDistanceFromSun(1),
   mars: getScaledDistanceFromSun(1.5),
   jupiter: getScaledDistanceFromSun(5.2),
-  saturn: getScaledDistanceFromSun(9.6),
-  uranus: getScaledDistanceFromSun(19.2),
-  neptune: getScaledDistanceFromSun(30),
-  pluto: getScaledDistanceFromSun(39.5)
+  saturn: getScaledDistanceFromSun(7),//getScaledDistanceFromSun(9.6),
+  uranus: getScaledDistanceFromSun(8),//getScaledDistanceFromSun(19.2),
+  neptune: getScaledDistanceFromSun(10),//getScaledDistanceFromSun(30),
+  pluto: getScaledDistanceFromSun(12)//getScaledDistanceFromSun(39.5)
 }
 
 function backgroundSoundInit() {
@@ -71,7 +72,7 @@ function playPause() {
 
 function jonInit() {
   backgroundSoundInit()
-  
+
   // Orbit Speed Adjuster
   window.GLOBAL_GL.jonObjects.ORBIT_SPEED = 0.0000001;
   const orbitSpeedInput = document.createElement('div')
