@@ -105,7 +105,7 @@ function jonInit() {
     let mesh = new THREE.Mesh(geometry, material);
     jupiter.add(mesh);
   });
-  let ringGeometry = new THREE.RingGeometry(3, 3.2, 32);
+  let ringGeometry = new THREE.RingGeometry(window.planetSizes.jupiter + 5, 3.2, 32);
   let ringMaterial = new THREE.MeshBasicMaterial({ color: '#a13d2d', side: THREE.DoubleSide });
   const jupiterRing = new THREE.Mesh(ringGeometry, ringMaterial);
   jupiter.add(jupiterRing)
@@ -133,7 +133,7 @@ function jonInit() {
     let mesh = new THREE.Mesh(geometry, material);
     uranus.add(mesh);
   });
-  ringGeometry = new THREE.RingGeometry(2, 2.2, 32);
+  ringGeometry = new THREE.RingGeometry(window.planetSizes.uranus + 5, 2.2, 32);
   ringMaterial = new THREE.MeshBasicMaterial({ color: 'navy', side: THREE.DoubleSide });
   const uranusRing = new THREE.Mesh(ringGeometry, ringMaterial);
   uranus.add(uranusRing);
@@ -147,7 +147,7 @@ function jonInit() {
     let mesh = new THREE.Mesh(geometry, material);
     neptune.add(mesh);
   });
-  ringGeometry = new THREE.RingGeometry(2.4, 2.5, 32);
+  ringGeometry = new THREE.RingGeometry(window.planetSizes.neptune + 5, 2.5, 32);
   ringMaterial = new THREE.MeshBasicMaterial({ color: '#3442ff', side: THREE.DoubleSide });
   const neptuneRing = new THREE.Mesh(ringGeometry, ringMaterial);
   neptune.add(neptuneRing);
