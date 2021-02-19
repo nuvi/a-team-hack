@@ -1,4 +1,9 @@
 function laneInit() {
+    const texture = new THREE.TextureLoader().load("https://images.unsplash.com/photo-1506318137071-a8e063b4bec0?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2140&q=80");
+    texture.wrapS = THREE.ClampToEdgeWrapping;
+    texture.wrapT = THREE.ClampToEdgeWrapping;
+    window.GLOBAL_GL.scene.background = texture
+
     const lightColor = 0xfff7ba
     sunLight = new THREE.PointLight(lightColor, 0);
 
