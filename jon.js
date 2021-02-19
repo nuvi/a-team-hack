@@ -1,38 +1,44 @@
 function jonInit() {
-  let geometry = new THREE.SphereGeometry(.5);
-  let material = new THREE.MeshBasicMaterial({ color: '#bada55', wireframe: true });
-  const mercury = new THREE.Mesh(geometry, material);
-  
+  let mercury = new THREE.Object3D();
+  var loader = new THREE.TextureLoader();
+  loader.load('https://raw.githubusercontent.com/mrdoob/three.js/dev/examples/textures/lava/lavatile.jpg', function (texture) {
+    var geometry = new THREE.SphereGeometry(.5, 50, 50);
+    var material = new THREE.MeshPhysicalMaterial({ map: texture });
+    var mesh = new THREE.Mesh(geometry, material);
+    mercury.add(mesh);
+  });
+  window.GLOBAL_GL.scene.add(mercury);
+
   geometry = new THREE.SphereGeometry(.9);
   material = new THREE.MeshBasicMaterial({ color: '#ff88fa', wireframe: true });
   const venus = new THREE.Mesh(geometry, material);
 
   geometry = new THREE.SphereGeometry(1.2);
-  material = new THREE.MeshBasicMaterial({ color: '#00aaff', wireframe: true});
+  material = new THREE.MeshBasicMaterial({ color: '#00aaff', wireframe: true });
   const earth = new THREE.Mesh(geometry, material);
 
   geometry = new THREE.SphereGeometry(.6);
-  material = new THREE.MeshBasicMaterial({ color: 'red', wireframe: true});
+  material = new THREE.MeshBasicMaterial({ color: 'red', wireframe: true });
   const mars = new THREE.Mesh(geometry, material);
 
   geometry = new THREE.SphereGeometry(2);
-  material = new THREE.MeshBasicMaterial({ color: 'yellow', wireframe: true});
+  material = new THREE.MeshBasicMaterial({ color: 'yellow', wireframe: true });
   const jupiter = new THREE.Mesh(geometry, material);
 
   geometry = new THREE.SphereGeometry(1.8);
-  material = new THREE.MeshBasicMaterial({ color: 'orange', wireframe: true});
+  material = new THREE.MeshBasicMaterial({ color: 'orange', wireframe: true });
   const saturn = new THREE.Mesh(geometry, material);
 
   geometry = new THREE.SphereGeometry(1.3);
-  material = new THREE.MeshBasicMaterial({ color: 'blue', wireframe: true});
+  material = new THREE.MeshBasicMaterial({ color: 'blue', wireframe: true });
   const uranus = new THREE.Mesh(geometry, material);
 
   geometry = new THREE.SphereGeometry(1);
-  material = new THREE.MeshBasicMaterial({ color: 'lightblue', wireframe: true});
+  material = new THREE.MeshBasicMaterial({ color: 'lightblue', wireframe: true });
   const neptune = new THREE.Mesh(geometry, material);
 
   geometry = new THREE.SphereGeometry(.2);
-  material = new THREE.MeshBasicMaterial({ color: 'brown', wireframe: true});
+  material = new THREE.MeshBasicMaterial({ color: 'brown', wireframe: true });
   const pluto = new THREE.Mesh(geometry, material);
 
   window.GLOBAL_GL.scene.add(mercury);
