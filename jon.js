@@ -1,5 +1,10 @@
 const earthTilt = 23.4 * Math.PI / 180; // tilt in radians
-const earthAxis = new THREE.Vector3( Math.sin( earthTilt ), Math.cos( earthTilt ), 0 ).normalize();
+const earthAxis = new THREE.Vector3(Math.sin(earthTilt), Math.cos(earthTilt), 0).normalize();
+
+window.planetSizes = {
+  sun: 10,
+  mercury: 0.015 * 10
+}
 
 function jonInit() {
   window.GLOBAL_GL.jonObjects.ORBIT_SPEED = 0.000001;
@@ -22,7 +27,7 @@ function jonInit() {
   let mercury = new THREE.Object3D();
   let loader = new THREE.TextureLoader();
   loader.load('data:image/jpeg;base64,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', function (texture) {
-    let geometry = new THREE.SphereGeometry(0.015 * 10, 50, 50);
+    let geometry = new THREE.SphereGeometry(window.planetSizes.mercury, 50, 50);
     let material = new THREE.MeshPhysicalMaterial({ map: texture });
     let mesh = new THREE.Mesh(geometry, material);
     mercury.add(mesh);
@@ -43,7 +48,7 @@ function jonInit() {
   loader = new THREE.TextureLoader();
   loader.load('https://raw.githubusercontent.com/mrdoob/three.js/dev/examples/textures/planets/earth_atmos_4096.jpg', function (texture) {
     let geometry = new THREE.SphereGeometry(0.045 * 10, 50, 50);
-    geometry.applyMatrix( new THREE.Matrix4().makeRotationZ( - earthTilt ) );
+    geometry.applyMatrix4(new THREE.Matrix4().makeRotationZ(- earthTilt));
     let material = new THREE.MeshPhysicalMaterial({ map: texture });
     let mesh = new THREE.Mesh(geometry, material);
     earth.add(mesh);
@@ -68,10 +73,10 @@ function jonInit() {
     let mesh = new THREE.Mesh(geometry, material);
     jupiter.add(mesh);
   });
-  let ringGeometry = new THREE.RingGeometry( 3, 3.2, 32 );
-  let ringMaterial = new THREE.MeshBasicMaterial( { color: '#a13d2d', side: THREE.DoubleSide } );
-  const jupiterRing = new THREE.Mesh( ringGeometry, ringMaterial );
-  jupiter.add( jupiterRing )
+  let ringGeometry = new THREE.RingGeometry(3, 3.2, 32);
+  let ringMaterial = new THREE.MeshBasicMaterial({ color: '#a13d2d', side: THREE.DoubleSide });
+  const jupiterRing = new THREE.Mesh(ringGeometry, ringMaterial);
+  jupiter.add(jupiterRing)
   window.GLOBAL_GL.scene.add(jupiter);
 
   let saturn = new THREE.Object3D();
@@ -82,10 +87,10 @@ function jonInit() {
     let mesh = new THREE.Mesh(geometry, material);
     saturn.add(mesh);
   });
-  ringGeometry = new THREE.RingGeometry( 2.4, 3.8, 32 );
-  ringMaterial = new THREE.MeshBasicMaterial( { color: '#aaaa6A', side: THREE.DoubleSide } );
-  const saturnRing = new THREE.Mesh( ringGeometry, ringMaterial );
-  saturn.add( saturnRing );
+  ringGeometry = new THREE.RingGeometry(2.4, 3.8, 32);
+  ringMaterial = new THREE.MeshBasicMaterial({ color: '#aaaa6A', side: THREE.DoubleSide });
+  const saturnRing = new THREE.Mesh(ringGeometry, ringMaterial);
+  saturn.add(saturnRing);
   window.GLOBAL_GL.scene.add(saturn);
 
   let uranus = new THREE.Object3D();
@@ -96,10 +101,10 @@ function jonInit() {
     let mesh = new THREE.Mesh(geometry, material);
     uranus.add(mesh);
   });
-  ringGeometry = new THREE.RingGeometry( 2, 2.2, 32 );
-  ringMaterial = new THREE.MeshBasicMaterial( { color: 'navy', side: THREE.DoubleSide } );
-  const uranusRing = new THREE.Mesh( ringGeometry, ringMaterial );
-  uranus.add( uranusRing );
+  ringGeometry = new THREE.RingGeometry(2, 2.2, 32);
+  ringMaterial = new THREE.MeshBasicMaterial({ color: 'navy', side: THREE.DoubleSide });
+  const uranusRing = new THREE.Mesh(ringGeometry, ringMaterial);
+  uranus.add(uranusRing);
   window.GLOBAL_GL.scene.add(uranus);
 
   let neptune = new THREE.Object3D();
@@ -110,10 +115,10 @@ function jonInit() {
     let mesh = new THREE.Mesh(geometry, material);
     neptune.add(mesh);
   });
-  ringGeometry = new THREE.RingGeometry( 2.4, 2.5, 32 );
-  ringMaterial = new THREE.MeshBasicMaterial( { color: '#3442ff', side: THREE.DoubleSide } );
-  const neptuneRing = new THREE.Mesh( ringGeometry, ringMaterial );
-  neptune.add( neptuneRing );
+  ringGeometry = new THREE.RingGeometry(2.4, 2.5, 32);
+  ringMaterial = new THREE.MeshBasicMaterial({ color: '#3442ff', side: THREE.DoubleSide });
+  const neptuneRing = new THREE.Mesh(ringGeometry, ringMaterial);
+  neptune.add(neptuneRing);
   window.GLOBAL_GL.scene.add(neptune);
 
   let pluto = new THREE.Object3D();
@@ -150,7 +155,7 @@ function jonInit() {
 function setInOrbit(planetName, earthYears, distance, rotationSpeed, time) {
   const speed = (365 / earthYears) * window.GLOBAL_GL.jonObjects.ORBIT_SPEED;
   if (planetName === 'earth') {
-      window.GLOBAL_GL.jonObjects[planetName].rotateOnAxis( earthAxis, rotationSpeed );
+    window.GLOBAL_GL.jonObjects[planetName].rotateOnAxis(earthAxis, rotationSpeed);
   } else {
     window.GLOBAL_GL.jonObjects[planetName].rotation.x += rotationSpeed;
     window.GLOBAL_GL.jonObjects[planetName].rotation.y += rotationSpeed;
