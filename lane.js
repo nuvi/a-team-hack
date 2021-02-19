@@ -1,6 +1,6 @@
 function laneInit() {
     const lightColor = 0xfff7ba
-    sunLight = new THREE.PointLight(lightColor, 2, 50);
+    sunLight = new THREE.PointLight(lightColor, 3);
 
     let sun = new THREE.Object3D();
     var loader = new THREE.TextureLoader();
@@ -13,6 +13,9 @@ function laneInit() {
     sunLight.add(sun);
     window.GLOBAL_GL.scene.add(sunLight);
     window.GLOBAL_GL.laneObjects.sun = sun
+
+    const ambientLight = new THREE.AmbientLight(0xffffff, .25);
+    scene.add(ambientLight);
 }
 
 function laneRenderer() {
