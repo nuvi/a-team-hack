@@ -1,5 +1,5 @@
 const earthTilt = 23.4 * Math.PI / 180; // tilt in radians
-const earthAxis = new THREE.Vector3( Math.sin( earthTilt ), Math.cos( earthTilt ), 0 ).normalize();
+const earthAxis = new THREE.Vector3(Math.sin(earthTilt), Math.cos(earthTilt), 0).normalize();
 
 function jonInit() {
   const orbitSpeedInput = document.createElement('div')
@@ -42,7 +42,7 @@ function jonInit() {
   loader = new THREE.TextureLoader();
   loader.load('https://raw.githubusercontent.com/mrdoob/three.js/dev/examples/textures/planets/earth_atmos_4096.jpg', function (texture) {
     let geometry = new THREE.SphereGeometry(0.045 * 10, 50, 50);
-    geometry.applyMatrix( new THREE.Matrix4().makeRotationZ( - earthTilt ) );
+    geometry.applyMatrix4(new THREE.Matrix4().makeRotationZ(- earthTilt));
     let material = new THREE.MeshPhysicalMaterial({ map: texture });
     let mesh = new THREE.Mesh(geometry, material);
     earth.add(mesh);
@@ -67,10 +67,10 @@ function jonInit() {
     let mesh = new THREE.Mesh(geometry, material);
     jupiter.add(mesh);
   });
-  let ringGeometry = new THREE.RingGeometry( 3, 3.2, 32 );
-  let ringMaterial = new THREE.MeshBasicMaterial( { color: '#a13d2d', side: THREE.DoubleSide } );
-  const jupiterRing = new THREE.Mesh( ringGeometry, ringMaterial );
-  jupiter.add( jupiterRing )
+  let ringGeometry = new THREE.RingGeometry(3, 3.2, 32);
+  let ringMaterial = new THREE.MeshBasicMaterial({ color: '#a13d2d', side: THREE.DoubleSide });
+  const jupiterRing = new THREE.Mesh(ringGeometry, ringMaterial);
+  jupiter.add(jupiterRing)
   window.GLOBAL_GL.scene.add(jupiter);
 
   let saturn = new THREE.Object3D();
@@ -81,10 +81,10 @@ function jonInit() {
     let mesh = new THREE.Mesh(geometry, material);
     saturn.add(mesh);
   });
-  ringGeometry = new THREE.RingGeometry( 2.4, 3.8, 32 );
-  ringMaterial = new THREE.MeshBasicMaterial( { color: '#aaaa6A', side: THREE.DoubleSide } );
-  const saturnRing = new THREE.Mesh( ringGeometry, ringMaterial );
-  saturn.add( saturnRing );
+  ringGeometry = new THREE.RingGeometry(2.4, 3.8, 32);
+  ringMaterial = new THREE.MeshBasicMaterial({ color: '#aaaa6A', side: THREE.DoubleSide });
+  const saturnRing = new THREE.Mesh(ringGeometry, ringMaterial);
+  saturn.add(saturnRing);
   window.GLOBAL_GL.scene.add(saturn);
 
   let uranus = new THREE.Object3D();
@@ -95,10 +95,10 @@ function jonInit() {
     let mesh = new THREE.Mesh(geometry, material);
     uranus.add(mesh);
   });
-  ringGeometry = new THREE.RingGeometry( 2, 2.2, 32 );
-  ringMaterial = new THREE.MeshBasicMaterial( { color: 'navy', side: THREE.DoubleSide } );
-  const uranusRing = new THREE.Mesh( ringGeometry, ringMaterial );
-  uranus.add( uranusRing );
+  ringGeometry = new THREE.RingGeometry(2, 2.2, 32);
+  ringMaterial = new THREE.MeshBasicMaterial({ color: 'navy', side: THREE.DoubleSide });
+  const uranusRing = new THREE.Mesh(ringGeometry, ringMaterial);
+  uranus.add(uranusRing);
   window.GLOBAL_GL.scene.add(uranus);
 
   let neptune = new THREE.Object3D();
@@ -109,10 +109,10 @@ function jonInit() {
     let mesh = new THREE.Mesh(geometry, material);
     neptune.add(mesh);
   });
-  ringGeometry = new THREE.RingGeometry( 2.4, 2.5, 32 );
-  ringMaterial = new THREE.MeshBasicMaterial( { color: '#3442ff', side: THREE.DoubleSide } );
-  const neptuneRing = new THREE.Mesh( ringGeometry, ringMaterial );
-  neptune.add( neptuneRing );
+  ringGeometry = new THREE.RingGeometry(2.4, 2.5, 32);
+  ringMaterial = new THREE.MeshBasicMaterial({ color: '#3442ff', side: THREE.DoubleSide });
+  const neptuneRing = new THREE.Mesh(ringGeometry, ringMaterial);
+  neptune.add(neptuneRing);
   window.GLOBAL_GL.scene.add(neptune);
 
   let pluto = new THREE.Object3D();
@@ -150,7 +150,7 @@ function jonInit() {
 function setInOrbit(planetName, earthYears, distance, rotationSpeed, time) {
   const speed = (365 / earthYears) * window.GLOBAL_GL.jonObjects.ORBIT_SPEED;
   if (planetName === 'earth') {
-      window.GLOBAL_GL.jonObjects[planetName].rotateOnAxis( earthAxis, rotationSpeed );
+    window.GLOBAL_GL.jonObjects[planetName].rotateOnAxis(earthAxis, rotationSpeed);
   } else {
     window.GLOBAL_GL.jonObjects[planetName].rotation.x += rotationSpeed;
     window.GLOBAL_GL.jonObjects[planetName].rotation.y += rotationSpeed;
