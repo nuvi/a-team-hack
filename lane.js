@@ -10,7 +10,7 @@ function laneInit() {
     let sun = new THREE.Object3D();
     var loader = new THREE.TextureLoader();
     loader.load('https://raw.githubusercontent.com/mrdoob/three.js/dev/examples/textures/lava/lavatile.jpg', function (texture) {
-        var geometry = new THREE.SphereGeometry(1, 20, 20);
+        var geometry = new THREE.SphereGeometry(window.planetSizes.sun, 50, 50);
         var material = new THREE.MeshBasicMaterial({ map: texture });
         var mesh = new THREE.Mesh(geometry, material);
         sun.add(mesh);
@@ -44,7 +44,7 @@ function laneInit() {
 }
 
 function laneRenderer() {
-    window.GLOBAL_GL.laneObjects.sun.rotation.y += .01
+    window.GLOBAL_GL.laneObjects.sun.rotation.z += .01
 
     const maxSpace = 500
     for (let cometLight of window.GLOBAL_GL.laneObjects.cometLights) {
