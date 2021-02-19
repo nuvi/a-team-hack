@@ -1,15 +1,15 @@
 function laneInit() {
     // make a cube and add it to the scene
-    const geometry = new THREE.BoxGeometry();
-    const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
-    const cube = new THREE.Mesh(geometry, material);
-    window.GLOBAL_GL.scene.add(cube);
-
-    window.GLOBAL_GL.laneObjects.cube = cube
+    const geometry = new THREE.SphereGeometry(25, 25, 25);
+    const wireframe = new THREE.WireframeGeometry(geometry);
+    const line = new THREE.LineSegments(wireframe);
+    line.material.depthTest = false;
+    line.material.opacity = 0.25;
+    line.material.transparent = true;
+    window.GLOBAL_GL.scene.add(line);
+    window.GLOBAL_GL.laneObjects.line = line
 }
 
 function laneRenderer() {
-    // rotate the cube a bit
-    window.GLOBAL_GL.laneObjects.cube.rotation.x += 0.01;
-    window.GLOBAL_GL.laneObjects.cube.rotation.y += 0.01;
+    window.GLOBAL_GL.laneObjects.line.rotation.y += .01
 }
