@@ -133,8 +133,12 @@ function jonInit() {
 
 function orbitPlanet(planetName, earthYears, distance, rotationSpeed, time) {
   const speed = (365 / earthYears) * window.GLOBAL_GL.jonObjects.ORBIT_SPEED;
-  window.GLOBAL_GL.jonObjects[planetName].rotation.x += rotationSpeed;
-  window.GLOBAL_GL.jonObjects[planetName].rotation.y += rotationSpeed;
+  if (planetName === 'earth') {
+      window.GLOBAL_GL.jonObjects[planetName].rotateOnAxis( earthAxis, rotationSpeed );
+  } else {
+    window.GLOBAL_GL.jonObjects[planetName].rotation.x += rotationSpeed;
+    window.GLOBAL_GL.jonObjects[planetName].rotation.y += rotationSpeed;
+  }
   window.GLOBAL_GL.jonObjects[planetName].position.x = Math.cos(time * speed) * distance;
   window.GLOBAL_GL.jonObjects[planetName].position.y = Math.sin(time * speed) * distance;
   // window.GLOBAL_GL.jonObjects[planetName].position.z = Math.sin(time * speed) * distance;
