@@ -5,7 +5,7 @@ function laneInit() {
     window.GLOBAL_GL.scene.background = texture
 
     const lightColor = 0xfff7ba
-    sunLight = new THREE.PointLight(lightColor, 1);
+    sunLight = new THREE.PointLight(lightColor, 2);
 
     let sun = new THREE.Object3D();
     var loader = new THREE.TextureLoader();

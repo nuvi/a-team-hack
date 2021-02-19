@@ -6,7 +6,7 @@ const sunRadiusKM = 1391400;
 
 function getScaledDistanceFromSun(planetDistanceAU) {
   var realScale = (planetDistanceAU * 10) / sunRadius;
-  return realScale / 100;
+  return (realScale / 100) + 10;
 }
 
 function getScaledSize(planetSizeKM) {
@@ -39,6 +39,8 @@ window.planetDistance = {
 }
 
 function jonInit() {
+  const lightColor = 0xffffff;
+  slightglow = new THREE.PointLight(lightColor, 1);
   const orbitSpeedInput = document.createElement('div')
   const slider = document.createElement('input');
   slider.setAttribute('type', 'range');
