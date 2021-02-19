@@ -19,13 +19,72 @@ function laneInit() {
     window.GLOBAL_GL.scene.add(sunLight);
     window.GLOBAL_GL.laneObjects.sun = sun
     window.GLOBAL_GL.laneObjects.sunLight = sunLight
-    window.GLOBAL_GL.laneObjects.sunFading = false
 
-    const ambientLight = new THREE.AmbientLight(0xffffff, .25);
+    window.GLOBAL_GL.laneObjects.cometLights = []
+    for (let i = 0; i < 100; i++) {
+        let cometLight = new THREE.PointLight(lightColor, 1, 100, 2);
+        const geometry = new THREE.SphereGeometry(1, 32, 32);
+        const material = new THREE.MeshBasicMaterial({ color: lightColor });
+        const comet = new THREE.Mesh(geometry, material);
+        cometLight.position.x = getRandomInt(-200, 200)
+        cometLight.position.z = getRandomInt(-200, 200)
+        cometLight.position.y = getRandomInt(-200, 200)
+        cometLight.speedy = getRandomInt(1, 3)
+        cometLight.posX = Math.random() > .5
+        cometLight.posY = Math.random() > .5
+        cometLight.posZ = Math.random() > .5
+        cometLight.add(comet);
+        window.GLOBAL_GL.scene.add(cometLight);
+        window.GLOBAL_GL.laneObjects.cometLights.push(cometLight)
+    }
+
+    const ambientLight = new THREE.AmbientLight(lightColor, .25);
     scene.add(ambientLight);
     window.GLOBAL_GL.laneObjects.ambientLight = ambientLight
 }
 
 function laneRenderer() {
     window.GLOBAL_GL.laneObjects.sun.rotation.y += .01
+
+    const maxSpace = 500
+    for (let cometLight of window.GLOBAL_GL.laneObjects.cometLights) {
+        if (cometLight.posX) {
+            cometLight.position.x -= cometLight.speedy
+        } else {
+            cometLight.position.x += cometLight.speedy
+        }
+        if (cometLight.posY) {
+            cometLight.position.y -= cometLight.speedy
+        } else {
+            cometLight.position.y += cometLight.speedy
+        }
+        if (cometLight.posZ) {
+            cometLight.position.z -= cometLight.speedy
+        } else {
+            cometLight.position.z += cometLight.speedy
+        }
+
+        if (cometLight.position.x > maxSpace) {
+            cometLight.position.x = -maxSpace
+        }
+        if (cometLight.position.x < -maxSpace) {
+            cometLight.position.x = maxSpace
+        }
+        if (cometLight.position.y > maxSpace) {
+            cometLight.position.y = -maxSpace
+        }
+        if (cometLight.position.y < -maxSpace) {
+            cometLight.position.y = maxSpace
+        }
+        if (cometLight.position.z > maxSpace) {
+            cometLight.position.z = -maxSpace
+        }
+        if (cometLight.position.z < -maxSpace) {
+            cometLight.position.z = maxSpace
+        }
+    }
+}
+
+function getRandomInt(min, max) {
+    return Math.floor(Math.random() * Math.floor(max - min)) + min;
 }
