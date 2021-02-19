@@ -1,3 +1,6 @@
+const earthTilt = 23.4 * Math.PI / 180; // tilt in radians
+const earthAxis = new THREE.Vector3( Math.sin( earthTilt ), Math.cos( earthTilt ), 0 ).normalize();
+
 function jonInit() {
   let mercury = new THREE.Object3D();
   var loader = new THREE.TextureLoader();
@@ -23,6 +26,7 @@ function jonInit() {
   var loader = new THREE.TextureLoader();
   loader.load('https://raw.githubusercontent.com/mrdoob/three.js/dev/examples/textures/planets/earth_atmos_4096.jpg', function (texture) {
     var geometry = new THREE.SphereGeometry(0.045 * 10, 50, 50);
+    geometry.applyMatrix( new THREE.Matrix4().makeRotationZ( - earthTilt ) );
     var material = new THREE.MeshPhysicalMaterial({ map: texture });
     var mesh = new THREE.Mesh(geometry, material);
     earth.add(mesh);
@@ -112,8 +116,12 @@ function jonInit() {
 
 function orbitPlanet(planetName, earthYears, distance, rotationSpeed, time) {
   const speed = (365 / earthYears) * .00001
-  window.GLOBAL_GL.jonObjects[planetName].rotation.x += rotationSpeed;
-  window.GLOBAL_GL.jonObjects[planetName].rotation.y += rotationSpeed;
+  if (planetName === 'earth') {
+      window.GLOBAL_GL.jonObjects[planetName].rotateOnAxis( earthAxis, rotationSpeed );
+  } else {
+    window.GLOBAL_GL.jonObjects[planetName].rotation.x += rotationSpeed;
+    window.GLOBAL_GL.jonObjects[planetName].rotation.y += rotationSpeed;
+  }
   window.GLOBAL_GL.jonObjects[planetName].position.x = Math.cos(time * speed) * distance;
   window.GLOBAL_GL.jonObjects[planetName].position.y = Math.sin(time * speed) * distance;
   // window.GLOBAL_GL.jonObjects[planetName].position.z = Math.sin(time * speed) * distance;
