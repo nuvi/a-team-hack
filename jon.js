@@ -38,7 +38,41 @@ window.planetDistance = {
   pluto: getScaledDistanceFromSun(39.5)
 }
 
+function backgroundSoundInit() {
+  const listener = new THREE.AudioListener();
+  window.GLOBAL_GL.camera.add( listener );
+  window.GLOBAL_GL.jonObjects.sound = new THREE.Audio( listener );
+  const audioLoader = new THREE.AudioLoader();
+  audioLoader.load( './sounds/ambience.mp3', function( buffer ) {
+    window.GLOBAL_GL.jonObjects.sound.setBuffer( buffer );
+    window.GLOBAL_GL.jonObjects.sound.setLoop( true );
+    window.GLOBAL_GL.jonObjects.sound.setVolume( 0.2 );
+  });
+
+  const playPauseButton = document.createElement('button');
+  playPauseButton.className = 'play-pause';
+  playPauseButton.innerText = window.GLOBAL_GL.jonObjects.sound.isPlaying ? 'Pause Ambient Sound' : 'Play Ambient Sound';
+  playPauseButton.addEventListener('click', playPause);
+  playPauseButton.style = 'position: absolute; left: 10px; top: 10px;';
+  document.querySelector('body').appendChild(playPauseButton);
+}
+
+function playPause() {
+  const { sound } = window.GLOBAL_GL.jonObjects
+  if (sound.isPlaying) {
+    sound.pause();
+    document.querySelector('.play-pause').innerText = 'Play Ambient Sound';
+  } else {
+    sound.play();
+    document.querySelector('.play-pause').innerText = 'Pause Ambient Sound';
+  }
+
+}
+
 function jonInit() {
+  backgroundSoundInit()
+  
+  // Orbit Speed Adjuster
   window.GLOBAL_GL.jonObjects.ORBIT_SPEED = 0.000001;
   const orbitSpeedInput = document.createElement('div')
   const slider = document.createElement('input');
