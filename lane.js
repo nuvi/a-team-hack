@@ -5,8 +5,8 @@ function laneInit() {
     let sun = new THREE.Object3D();
     var loader = new THREE.TextureLoader();
     loader.load('https://raw.githubusercontent.com/mrdoob/three.js/dev/examples/textures/lava/lavatile.jpg', function (texture) {
-        var geometry = new THREE.SphereGeometry(3, 20, 20);
-        var material = new THREE.MeshPhysicalMaterial({ map: texture });
+        var geometry = new THREE.SphereGeometry(1, 20, 20);
+        var material = new THREE.MeshBasicMaterial({ map: texture });
         var mesh = new THREE.Mesh(geometry, material);
         sun.add(mesh);
     });
