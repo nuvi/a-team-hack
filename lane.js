@@ -23,7 +23,7 @@ function laneInit() {
     window.GLOBAL_GL.laneObjects.cometLights = []
     for (let i = 0; i < 100; i++) {
         let cometLight = new THREE.PointLight(lightColor, 1, 100, 2);
-        const geometry = new THREE.SphereGeometry(1, 32, 32);
+        const geometry = new THREE.SphereGeometry(.5, 32, 32);
         const material = new THREE.MeshBasicMaterial({ color: lightColor });
         const comet = new THREE.Mesh(geometry, material);
         cometLight.position.x = getRandomInt(-200, 200)
@@ -46,7 +46,7 @@ function laneInit() {
 function laneRenderer() {
     window.GLOBAL_GL.laneObjects.sun.rotation.z += .01
 
-    const maxSpace = 500
+    const maxSpace = 2000
     for (let cometLight of window.GLOBAL_GL.laneObjects.cometLights) {
         if (cometLight.posX) {
             cometLight.position.x -= cometLight.speedy
