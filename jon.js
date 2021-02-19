@@ -140,7 +140,7 @@ function jonInit() {
     let mesh = new THREE.Mesh(geometry, material);
     jupiter.add(mesh);
   });
-  let ringGeometry = new THREE.RingGeometry(window.planetSizes.jupiter + 5, 3.2, 32);
+  let ringGeometry = new THREE.RingGeometry(window.planetSizes.jupiter + 1, 3.2, 32);
   let ringMaterial = new THREE.MeshBasicMaterial({ color: '#a13d2d', side: THREE.DoubleSide });
   const jupiterRing = new THREE.Mesh(ringGeometry, ringMaterial);
   jupiter.add(jupiterRing)
@@ -168,7 +168,7 @@ function jonInit() {
     let mesh = new THREE.Mesh(geometry, material);
     uranus.add(mesh);
   });
-  ringGeometry = new THREE.RingGeometry(window.planetSizes.uranus + 5, 2.2, 32);
+  ringGeometry = new THREE.RingGeometry(window.planetSizes.uranus + 1, 2.2, 32);
   ringMaterial = new THREE.MeshBasicMaterial({ color: 'navy', side: THREE.DoubleSide });
   const uranusRing = new THREE.Mesh(ringGeometry, ringMaterial);
   uranus.add(uranusRing);
@@ -182,7 +182,7 @@ function jonInit() {
     let mesh = new THREE.Mesh(geometry, material);
     neptune.add(mesh);
   });
-  ringGeometry = new THREE.RingGeometry(window.planetSizes.neptune + 5, 2.5, 32);
+  ringGeometry = new THREE.RingGeometry(window.planetSizes.neptune + 1, 2.5, 32);
   ringMaterial = new THREE.MeshBasicMaterial({ color: '#3442ff', side: THREE.DoubleSide });
   const neptuneRing = new THREE.Mesh(ringGeometry, ringMaterial);
   neptune.add(neptuneRing);
@@ -197,16 +197,6 @@ function jonInit() {
     pluto.add(mesh);
   });
 
-  window.GLOBAL_GL.scene.add(pluto);
-
-  window.GLOBAL_GL.scene.add(mercury);
-  window.GLOBAL_GL.scene.add(venus);
-  window.GLOBAL_GL.scene.add(earth);
-  window.GLOBAL_GL.scene.add(mars);
-  window.GLOBAL_GL.scene.add(jupiter);
-  window.GLOBAL_GL.scene.add(saturn);
-  window.GLOBAL_GL.scene.add(uranus);
-  window.GLOBAL_GL.scene.add(neptune);
   window.GLOBAL_GL.scene.add(pluto);
 
   window.GLOBAL_GL.jonObjects.mercury = mercury;
@@ -241,7 +231,7 @@ function jonRenderer() {
   setInOrbit('mars', 1.8, 0.004, time)
   setInOrbit('jupiter', 11.87, 0.004, time)
   setInOrbit('saturn', 29.48, 0.004, time)
-  setInOrbit('uranus', 84.07, time)
-  setInOrbit('neptune', 164.90, time)
-  setInOrbit('pluto', 247.78, time)
+  setInOrbit('uranus', 84.07, 0.003, time)
+  setInOrbit('neptune', 164.90, 0.002, time)
+  setInOrbit('pluto', 247.78, 0.001, time)
 }
